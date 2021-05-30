@@ -87,9 +87,9 @@ print (job)
 
 print ("\n------ committing to github ---------")
 command("git commit -a -m iterate", printoutput=True)
-command("git push", printoutput=True)
 
-print ("\n------ pushing to github ---------")
+print ("------ pushing to github ---------")
+command("git push", printoutput=True)
 
 _, gitremote, _ = command("git remote -v")
 gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
