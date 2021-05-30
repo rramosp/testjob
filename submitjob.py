@@ -84,14 +84,18 @@ job = f"""
 print (job)
 
 # get git info
+
+print ("\n------ committing to github ---------")
+command("git commit -a -m iterate", printoutput=True)
+command("git push", printoutput=True)
+
+print ("\n------ pushing to github ---------")
+
 _, gitremote, _ = command("git remote -v")
 gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
 _, gitcommit, _ = command("git rev-parse --short HEAD")
 
 print (gitremote, gitcommit)
-
-command("git commit -a -m iterate", printoutput=True)
-command("git push", printoutput=True)
 
 
 
