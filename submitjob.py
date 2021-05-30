@@ -82,10 +82,9 @@ gitcommit = gitcommit.split("\n")[0]
 print (gitremote, gitcommit)
 
 if args.job_name is None:
-    job_name = datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + "__" + gitremote + ":" + gitcommit
+    job_name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + "__" + gitremote + "--" + gitcommit
 else:
     job_name = args.job_name
-
 
 job = f"""
 {{
