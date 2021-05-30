@@ -1,4 +1,5 @@
 import argparse, subprocess
+from datetime import datetime
 
 def command(cmd, printoutput=False):
     """
@@ -79,12 +80,15 @@ _, gitcommit, _ = command("git rev-parse --short HEAD")
 
 print (gitremote, gitcommit)
 
+if args.job_name is None:
+    job_name = datetime.now().strftime("%Y-%M-%D_%h:%m:%s") + "__" + gitremote + ":" + gitcommit
+else:
+    job_name = args.job_name
 
-print (args.job_name)
 
 job = f"""
 {{
-    "jobName": "{args.job_name}",
+    "jobName": "{job_name}",
     "jobQueue": "{args.job_queue}",
     "jobDefinition": "{args.job_definition}",
     "containerOverrides": {{
