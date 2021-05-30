@@ -64,8 +64,6 @@ parser.add_argument('--job-definition', default='CPU_tensorflow', help='AWS batc
 args = parser.parse_args()
 print ("ARGS", args)
 
-
-
 # get git info
 
 print ("\n------ committing to github ---------")
