@@ -103,15 +103,8 @@ job = f"""
 }}
 """
 
-print (job)
+with open("job.json", "w") as f:
+    f.write(job)
 
-"""
+# command("aws batch submit-job", printoutput=True)
 
-code, stdout, stderr = command("aws batch submit-job")
-
-print ("CODE", code)
-if stdout!="":
-    print ("------ STDOUT ------\n", stdout)
-if stderr!="":
-    print ("------ STDERR ------\n", stderr)
-"""
