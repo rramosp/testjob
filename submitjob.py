@@ -80,7 +80,7 @@ _, gitcommit, _ = command("git rev-parse --short HEAD")
 print (gitremote, gitcommit)
 
 
-print (args.jobname)
+print (args.job_name)
 
 job = f"""
 {{
