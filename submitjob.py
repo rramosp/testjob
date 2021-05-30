@@ -106,5 +106,6 @@ job = f"""
 with open("job.json", "w") as f:
     f.write(job)
 
-# command("aws batch submit-job", printoutput=True)
+print ("\n------ submitting job ---------")
+command("aws batch submit-job --cli-input-json file://job.json", printoutput=True)
 
