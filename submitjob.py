@@ -76,7 +76,8 @@ command("git push", printoutput=True)
 
 _, gitremote, _ = command("git remote -v")
 gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
-_, gitcommit, _ = command("git rev-parse --short HEAD").split("\n")[0]
+_, gitcommit, _ = command("git rev-parse --short HEAD")
+gitcommit = gitcommit.split("\n")[0]
 
 print (gitremote, gitcommit)
 
