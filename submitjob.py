@@ -86,7 +86,7 @@ if args.job_name is None:
 else:
     job_name = args.job_name
 
-job_name = job_name.replace("/", "__")
+job_name = job_name.replace("/", "__").replace(".git", "")
 
 job = f"""
 {{
