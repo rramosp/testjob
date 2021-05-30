@@ -55,7 +55,7 @@ def command(cmd, printoutput=False):
 
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('--job-name', required=True, help='AWS batch jobname')
+parser.add_argument('--job-name', required=False, help='AWS batch jobname')
 parser.add_argument('--job-queue', default='train_models_queue', help='AWS batch job queue')
 parser.add_argument('--job-definition', default='CPU_tensorflow', help='AWS batch job definition')
 #parser.add_argument('--repo', required=True, help='AWS batch jobname')
@@ -63,7 +63,24 @@ parser.add_argument('--job-definition', default='CPU_tensorflow', help='AWS batc
 args = parser.parse_args()
 print ("ARGS", args)
 
-job = f"asdasd{args}asdasd"
+
+
+# get git info
+
+print ("\n------ committing to github ---------")
+command("git commit -a -m iterate", printoutput=True)
+
+print ("------ pushing to github ---------")
+command("git push", printoutput=True)
+
+_, gitremote, _ = command("git remote -v")
+gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
+_, gitcommit, _ = command("git rev-parse --short HEAD")
+
+print (gitremote, gitcommit)
+
+
+print (args.jobname)
 
 job = f"""
 {{
@@ -82,22 +99,6 @@ job = f"""
 """
 
 print (job)
-
-# get git info
-
-print ("\n------ committing to github ---------")
-command("git commit -a -m iterate", printoutput=True)
-
-print ("------ pushing to github ---------")
-command("git push", printoutput=True)
-
-_, gitremote, _ = command("git remote -v")
-gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
-_, gitcommit, _ = command("git rev-parse --short HEAD")
-
-print (gitremote, gitcommit)
-
-
 
 """
 
