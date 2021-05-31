@@ -42,12 +42,20 @@ job = {
                 "value": "https://github.com/rramosp/testjob"
             },
             {
-                "name": "aws_secret_key",
+                "name": "JOBNAME",
+                "value": job_name
+            },
+            {
+                "name": "AWS_ACCESS_KEY_ID",
                 "value": creds.secret_key
             },
             {
-                "name": "aws_access_key",
+                "name": "AWS_SECRET_ACCESS_KEY",
                 "value": creds.access_key
+            },
+            {
+                "name": "AWS_DEFAULT_REGION",
+                "value": session.region_name
             }
         ]
     }
