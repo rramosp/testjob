@@ -66,7 +66,7 @@ job = {
 
 
 with open("job.json", "w") as f:
-    json.dump(f, job)
+    json.dump(job,f)
 #    f.write(job)
 
 #print ("\n------ submitting job ---------")
