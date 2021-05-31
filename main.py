@@ -41,12 +41,10 @@ print ("credentials-type", type(aws_credentials))
 print ("accessing boto3")
 import boto3
 
-s3 = boto3.client(
-    's3',
-    aws_access_key_id=aws_credentials['AccessKeyId'],
-    aws_secret_access_key=aws_credentials['SecretAccessKey'],
-    aws_session_token=aws_credentials['Token']
-)
+session = boto3.session.Session()
+print(session.get_credentials().get_frozen_credentials())
+
+s3 = boto3.client('s3')
 
 print ("-------- s3 buckets ---------")
 print (s3.list_buckets())
