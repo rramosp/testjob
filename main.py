@@ -22,8 +22,8 @@ for var in vars:
 
 s3 = boto3.client(
     's3',
-    aws_access_key_id=os.environ['aws_access_key'],
-    aws_secret_access_key=os.environ['aws_secret_key'],
+    aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
 )
 print ("-------- s3 buckets ---------")
 print (s3.list_buckets())
