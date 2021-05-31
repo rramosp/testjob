@@ -3,7 +3,7 @@ import pandas as pd
 from time import sleep
 from datetime import datetime
 from local.lib import utils
-import os
+import os, json
 
 print ("starting job ...")
 print ("numpy version is", np.__version__)
@@ -32,6 +32,8 @@ print ("---------------------")
 utils.command("df -h", printoutput=True)
 
 _,s,_ = utils.command(f"curl 169.254.170.2{os.environ['AWS_CONTAINER_CREDENTIALS_RELATIVE_URI']}", printoutput=True)
+s = json.loads(s)
 
 print ("credentials", s)
+print ("credentials-type", type(s))
 
