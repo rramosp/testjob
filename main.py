@@ -19,7 +19,7 @@ for var in vars:
     if var in os.environ.keys():
        print (f'{var}={os.environ[var]}')
 
-## retrieve dataset from S3 if required
+## get dataset from S3 if required
 utils.command("aws s3 cp s3://clotheme-jobs/data/ACGPN_data.tar.gz .")
 utils.command("tar zxvf ACGPN_data.tar.gz")
 utils.command("ls -las ACGPN_data", printoutput=True)
@@ -31,8 +31,11 @@ with open("output/results.txt", "w") as f:
     for _  in range(100):
         f.write(str(np.random.randint(10000000))+"\n")
 
+with open("output/extra.txt", "w") as f:
+    for _  in range(100):
+        f.write("AAA"+str(np.random.randint(10000000))+"\n")
 
-## send back output to S3 
-#utils.command(f"aws s3api put-object --bucket clotheme-jobs --key outputs/{os.environ['JOBNAME']}", printoutput=True)
+
+## send  output to S3 
 utils.command(f"aws s3 cp --recursive output s3://clotheme-jobs/outputs/{os.environ['JOBNAME']}", printoutput=True)
 
