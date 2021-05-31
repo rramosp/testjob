@@ -32,8 +32,22 @@ print ("---------------------")
 utils.command("df -h", printoutput=True)
 
 _,s,_ = utils.command(f"curl 169.254.170.2{os.environ['AWS_CONTAINER_CREDENTIALS_RELATIVE_URI']}", printoutput=True)
-s = json.loads(s)
+aws_credentials = json.loads(s)
 
-print ("credentials", s)
-print ("credentials-type", type(s))
+print ("credentials", aws_credentials)
+print ("credentials-type", type(aws_credentials))
 
+
+print ("accessing boto3")
+import boto3
+
+s3 = boto3.client(
+    's3',
+    aws_access_key_id=aws_credentials['AccessKeyId'],
+    aws_secret_access_key=aws_credentials['SecretAccessKey'],
+    aws_session_token=aws_credentials['Token']
+)
+
+print ("-------- s3 buckets ---------")
+print (s3.list_buckets())
+print ("-----------------------------")
