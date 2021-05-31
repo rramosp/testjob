@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from time import sleep
 from datetime import datetime
+from local.lib import utils
 import os
 
 print ("starting job ...")
@@ -26,7 +27,9 @@ for i in range(5):
     sleep(5)
 
 
+print ("---------------------")
 
+utils.command("df -h", printoutput=True)
 
 
 
