@@ -1,4 +1,4 @@
-import argparse, subprocess
+import argparse, json
 from datetime import datetime
 from local.lib.utils import command
 
@@ -49,9 +49,26 @@ job = f"""
 }}
 """
 
-with open("job.json", "w") as f:
-    f.write(job)
+job = {
+    "jobName": job_name,
+    "jobQueue": args.job_queue,
+    "jobDefinition": args.job_definition,
+    "containerOverrides": {
+        "environment": [
+            {
+                "name": "JOBREPO",
+                "value": "https://github.com/rramosp/testjob"
+            }
+        ]
+    }
+}
 
-print ("\n------ submitting job ---------")
-command("aws batch submit-job --cli-input-json file://job.json", printoutput=True)
-command("rm job.json")
+
+
+with open("job.json", "w") as f:
+    json.dump(f, job)
+#    f.write(job)
+
+#print ("\n------ submitting job ---------")
+#command("aws batch submit-job --cli-input-json file://job.json", printoutput=True)
+#command("rm job.json")
