@@ -12,7 +12,7 @@ import tensorflow as tf
 print('TF VERSION', tf.__version__)
 print ('GPUs', tf.config.list_physical_devices('GPU'))
 
-vars = ['AWS_BATCH_CE_NAME', 'AWS_BATCH_JOB_ID', 'AWS_BATCH_JQ_NAME', 'JOBNAME']
+vars = ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_DEFAULT_REGION', 'AWS_BATCH_CE_NAME', 'AWS_BATCH_JOB_ID', 'AWS_BATCH_JQ_NAME', 'JOBNAME']
 
 print ("------ ENV VARS -------")
 for var in vars:
