@@ -38,11 +38,11 @@ print ("-----------------------------")
 #utils.command("/usr/bin/sudo yum install -y s3fs-fuse", printoutput=True)
 utils.command("apt-get install -y s3fs", printoutput=True)
 utils.command("s3fs", printoutput=True)
-cmd = f"echo {os.environ['aws_access_key']}:{os.environ['aws_secret_key']} > /tmp/passwd-s3fs"
-print ("executing", cmd)
-utils.command(cmd)
-utils.command("pwd", printoutput=True)
-utils.command("ls -las ~ ", printoutput=True)
+
+with open("/tmp/passwd-s3fs", "w") as f:
+      f.write(f"echo {os.environ['aws_access_key']}:{os.environ['aws_secret_key']}\n")
+
+utils.command("ls -las /tmp", printoutput=True)
 utils.command("cat /tmp/passwd-s3fs", printoutput=True)
 utils.command("chmod 600 /tmp/passwd-s3fs")
 utils.command("mkdir s3")
