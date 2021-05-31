@@ -48,6 +48,10 @@ job = f"""
     }}
 }}
 """
+import boto3
+
+session = boto3.session.Session()
+creds = session.get_credentials().get_frozen_credentials()
 
 job = {
     "jobName": job_name,
@@ -58,12 +62,18 @@ job = {
             {
                 "name": "JOBREPO",
                 "value": "https://github.com/rramosp/testjob"
+            },
+            {
+                "name": "aws_secret_key",
+                "value": creds.secret_key
+            },
+            {
+                "name": "aws_access_key",
+                "value": creds.access_key
             }
         ]
     }
 }
-
-
 
 with open("job.json", "w") as f:
     json.dump(job,f)
