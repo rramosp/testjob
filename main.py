@@ -21,9 +21,8 @@ for var in vars:
 
 ## retrieve dataset from S3 if required
 utils.command("aws s3 cp s3://clotheme-jobs/data/ACGPN_data.tar.gz .")
-utils.command("ls -las ", printoutput=True)
 utils.command("tar zxvf ACGPN_data.tar.gz")
-utils.command("ls -las ", printoutput=True)
+utils.command("ls -las ACGPN_data", printoutput=True)
 
 
 ## simulate some output
@@ -34,6 +33,6 @@ with open("output/results.txt", "w") as f:
 
 
 ## send back output to S3 
-utils.command(f"aws s3api put-object --bucket clotheme-jobs --key outputs/{os.environ['JOBNAME']}", printoutput=True)
+#utils.command(f"aws s3api put-object --bucket clotheme-jobs --key outputs/{os.environ['JOBNAME']}", printoutput=True)
 utils.command(f"aws s3 cp --recursive output s3://clotheme-jobs/outputs/{os.environ['JOBNAME']}", printoutput=True)
 
