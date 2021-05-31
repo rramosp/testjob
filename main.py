@@ -40,7 +40,7 @@ utils.command("apt-get install -y s3fs", printoutput=True)
 utils.command("s3fs", printoutput=True)
 
 with open("/tmp/passwd-s3fs", "w") as f:
-      f.write(f"echo {os.environ['aws_access_key']}:{os.environ['aws_secret_key']}\n")
+      f.write(f"{os.environ['aws_access_key']}:{os.environ['aws_secret_key']}\n")
 
 utils.command("ls -las /tmp", printoutput=True)
 utils.command("cat /tmp/passwd-s3fs", printoutput=True)
