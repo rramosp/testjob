@@ -19,21 +19,21 @@ for var in vars:
     if var in os.environ.keys():
        print (f'{var}={os.environ[var]}')
 
-
-utils.command("aws s3 ls", printoutput=True)
-
-s3 = boto3.client(
-    's3',
-    aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-)
-print ("-------- s3 buckets ---------")
-print (s3.list_buckets())
-print ("-----------------------------")
+## retrieve dataset from S3 if required
+utils.command("aws s3 cp s3://clotheme-jobs/data/ACGPN_data.tar.gz .")
+utils.command("ls -las ", printoutput=True)
+utils.command("tar zxvf ACGPN_data.tar.gz")
+utils.command("ls -las ", printoutput=True)
 
 
+## simulate some output
+utils.command("mkdir output")
+with open("output/results.txt", "w") as f:
+    for _  in range(100):
+        f.write(str(np.random.randint(10000000))+"\n")
 
-#utils.command("which amazon-linux-extras", printoutput=True)
-#utils.command("which yum", printoutput=True)
-#utils.command("/usr/bin/sudo amazon-linux-extras install -y s3fs-fuse", printoutput=True)
-#utils.command("/usr/bin/sudo yum install -y s3fs-fuse", printoutput=True)
+
+## send back output to S3 
+utils.command(f"aws s3api put-object --bucket clotheme-jobs --key outputs/{os.environ['JOBNAME']}", printoutput=True)
+utils.command(f"aws s3 cp --recursive output s3://clotheme-jobs/outputs/{os.environ['JOBNAME']}", printoutput=True)
+
