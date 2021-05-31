@@ -20,6 +20,8 @@ gitremote = gitremote.split("\n")[0].split()[1].split(":")[-1]
 _, gitcommit, _ = command("git rev-parse --short HEAD")
 gitcommit = gitcommit.split("\n")[0]
 
+print ("REPO is ", gitremote)
+rasdasds
 if args.job_name is None:
     job_name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + "__" + gitremote + "__" + gitcommit
 else:
