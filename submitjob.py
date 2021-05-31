@@ -67,8 +67,7 @@ job = {
 
 with open("job.json", "w") as f:
     json.dump(job,f)
-#    f.write(job)
 
-#print ("\n------ submitting job ---------")
-#command("aws batch submit-job --cli-input-json file://job.json", printoutput=True)
-#command("rm job.json")
+print ("\n------ submitting job ---------")
+command("aws batch submit-job --cli-input-json file://job.json", printoutput=True)
+command("rm job.json")
