@@ -47,11 +47,11 @@ job = {
             },
             {
                 "name": "AWS_ACCESS_KEY_ID",
-                "value": creds.secret_key
+                "value": creds.access_key
             },
             {
                 "name": "AWS_SECRET_ACCESS_KEY",
-                "value": creds.access_key
+                "value": creds.secret_key
             },
             {
                 "name": "AWS_DEFAULT_REGION",

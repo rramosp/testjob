@@ -20,6 +20,8 @@ for var in vars:
        print (f'{var}={os.environ[var]}')
 
 
+utils.command("aws s3 ls", printoutput=True)
+
 s3 = boto3.client(
     's3',
     aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
@@ -29,7 +31,6 @@ print ("-------- s3 buckets ---------")
 print (s3.list_buckets())
 print ("-----------------------------")
 
-utils.command("aws s3 ls", printoutput=True)
 
 
 #utils.command("which amazon-linux-extras", printoutput=True)
