@@ -11,8 +11,12 @@ print ('running job', os.environ['JOBNAME'])
 utils.command("aws s3 cp s3://clotheme-jobs/data/ACGPN_data.tar.gz .")
 utils.command("tar zxvf ACGPN_data.tar.gz")
 
+#  -------------
 
 ## simulate some output
+
+print ("generating output")
+
 utils.command("mkdir output")
 with open("output/results.txt", "w") as f:
     for _  in range(100):
@@ -22,7 +26,7 @@ with open("output/extra.txt", "w") as f:
     for _  in range(100):
         f.write("AAA"+str(np.random.randint(10000000))+"\n")
 
-
+#  -------------
 ## send  output to S3 
 utils.command(f"aws s3 cp --recursive output s3://clotheme-jobs/outputs/{os.environ['JOBNAME']}", printoutput=True)
 
